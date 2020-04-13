@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(router);
 
 new Vue({
   el: '#app',
