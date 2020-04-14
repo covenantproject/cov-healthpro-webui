@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <p><strong>People currently None-Compliant</strong></p>
+    <p><strong>People currently Non-Compliant</strong></p>
     <table class="table is-fullwidth">
       <thead>
         <tr>

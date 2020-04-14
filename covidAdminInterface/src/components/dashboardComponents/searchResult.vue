@@ -15,8 +15,8 @@
       <tr v-for="item in getData" :key="item.index">
         <td>{{item.firstName}}</td>
         <td>{{item.lastName}}</td>
-        <td>Icons Go Here</td>
-        <td>{{item.sex}},{{item.age}}</td>
+        <td><span v-if="item.quarantineViolation">Violation</span> <span v-if="item.needsMedicalCare">Medical Care</span> <span v-if="item.needsFoodOrWater">Food/Water</span></td>
+        <td>{{item.sex}}, {{item.age}}</td>
         <td>{{item.address}}</td>
       </tr>
       </tbody>
@@ -28,7 +28,7 @@
     import sampleData from "../../data/data";
 
     export default {
-        name: "searchResults",
+        name: "searchResult",
 
         data: () => {
           return {
