@@ -3,9 +3,9 @@
     <nav class="bd-navbar navbar has-shadow is-spaced" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
-  <!--        <a class="navbar-item" href="https://bulma.io">-->
-  <!--          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
-  <!--        </a>-->
+          <!--        <a class="navbar-item" href="https://bulma.io">-->
+          <!--          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+          <!--        </a>-->
 
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
@@ -23,32 +23,9 @@
                 Covenant
               </router-link>
             </a>
-
-  <!--          <div class="navbar-item has-dropdown is-hoverable">-->
-  <!--            <a class="navbar-link">-->
-  <!--              More-->
-  <!--            </a>-->
-
-  <!--            <div class="navbar-dropdown">-->
-  <!--              <a class="navbar-item">-->
-  <!--                About-->
-  <!--              </a>-->
-  <!--              <a class="navbar-item">-->
-  <!--                Jobs-->
-  <!--              </a>-->
-  <!--              <a class="navbar-item">-->
-  <!--                Contact-->
-  <!--              </a>-->
-  <!--              <hr class="navbar-divider">-->
-  <!--              <a class="navbar-item">-->
-  <!--                Report an issue-->
-  <!--              </a>-->
-  <!--            </div>-->
-  <!--          </div>-->
           </div>
-
           <div class="navbar-end">
-            <a class="navbar-item" >Username</a>
+            <a class="navbar-item">Username</a>
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-light">
@@ -61,25 +38,28 @@
       </div>
     </nav>
     <div class="container" id="main">
-        <router-view/>
+      <div class="columns is-mobile is-centered">
+        <div class="column is-half">
+          <label>
+            <input id="search-box" class="input" type="text" placeholder="Search User">
+          </label>
+        </div>
+      </div>
+      <router-view/>
     </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
+  export default {
+    name: 'app',
+    data() {
+      return {}
     }
   }
-}
 </script>
 
 <style lang="scss">
-  /*html {*/
-  /*  background-color: lightgray;*/
-  /*}*/
 
   #main {
     margin-top: 5rem;
