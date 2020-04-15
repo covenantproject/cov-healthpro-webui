@@ -133,7 +133,9 @@ const data = {
   userProfile: {
     firstName: "John",
     lastName: "Doe",
+    message: "High fever reaching 100 degrees fahrenheit, with mild sweating and diarrhea",
     age: 22,
+    birthdayDDMMYYYY: "23 May 1997",
     sex: "Male",
     patientType: "Medical Quarantine",
     quarantineStart: 1586917814,

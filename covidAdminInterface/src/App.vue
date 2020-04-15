@@ -60,9 +60,8 @@
 </script>
 
 <style lang="scss">
-
   #main {
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-bottom: 5rem;
   }
 </style>
