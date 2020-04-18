@@ -98,44 +98,27 @@ const data = {
       sex: "Male",
       age: "22yr",
       address: "1234 Address St, City, Province, Country"
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      quarantineViolation: true,
-      needsMedicalCare: false,
-      needsFoodOrWater: false,
-      sex: "Male",
-      age: "22yr",
-      address: "1234 Address St, City, Province, Country"
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      quarantineViolation: false,
-      needsMedicalCare: false,
-      needsFoodOrWater: false,
-      sex: "Male",
-      age: "22yr",
-      address: "1234 Address St, City, Province, Country"
-    },
-    {
-      firstName: "John",
-      lastName: "Doe",
-      quarantineViolation: false,
-      needsMedicalCare: false,
-      needsFoodOrWater: true,
-      sex: "Male",
-      age: "22yr",
-      address: "1234 Address St, City, Province, Country"
+    },{
+      patientID: 1,
+      firstName: "test",
+      lastName: "test",
+      householdId: null,
+      covid19Status: "test",
+      quarantineStatus: "test",
+      isolationStatus: "false",
+      healthRequestStatus: null,
+      quarantineRequestStatus: "test",
+      suppliesRequestStatus: "test",
+      geofenceStatus: null,
+      heartbeatStatus: null,
+      latitude: 0,
+      longitude: 0
     }
   ],
   userProfile: {
     firstName: "John",
     lastName: "Doe",
-    message: "High fever reaching 100 degrees fahrenheit, with mild sweating and diarrhea",
     age: 22,
-    birthdayDDMMYYYY: "23 May 1997",
     sex: "Male",
     patientType: "Medical Quarantine",
     quarantineStart: 1586917814,

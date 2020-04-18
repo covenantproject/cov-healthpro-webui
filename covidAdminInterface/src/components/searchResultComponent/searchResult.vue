@@ -8,7 +8,7 @@
         <th>Last Name</th>
         <th>Needs</th>
         <th>Demographics</th>
-        <th>Address</th>
+        <th>Location</th>
       </tr>
       </thead>
       <tbody>
@@ -17,7 +17,7 @@
         <td>{{item.lastName}}</td>
         <td><span v-if="item.quarantineViolation">Violation</span> <span v-if="item.needsMedicalCare">Medical Care</span> <span v-if="item.needsFoodOrWater">Food/Water</span></td>
         <td>{{item.sex}}, {{item.age}}</td>
-        <td>{{item.address}}</td>
+        <td>{{item.latitude}}, {{item.longitude}}</td>
       </tr>
       </tbody>
     </table>
