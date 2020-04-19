@@ -4,14 +4,35 @@ import router from './router/index.js';
 import './../node_modules/bulma/css/bulma.css';
 import store from './data/index.js';
 import Vuex from 'vuex';
-import axios from 'axios';
+import * as Keycloak from 'keycloak-js'
+//import axios from 'axios';
 
 Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
-new Vue({
-  store,
-  router,
-  render: h => h(App),
-}).$mount('#app');
+//keycloak init options
+let initOptions = {
+  url: 'http://13.233.36.178:9763/auth', realm: 'master', clientId: 'COV-Client', onLoad: 'login-required'
+}
+
+let keycloak = Keycloak(initOptions);
+
+keycloak.init({ onLoad: initOptions.onLoad, "checkLoginIframe": false }).success((auth) => {
+
+  if (!auth) {
+    window.location.reload();
+  }
+
+  new Vue({
+    store,
+    router,
+    render: h => h(App),
+  }).$mount('#app');
+
+  localStorage.setItem("kc-token", keycloak.token);
+  localStorage.setItem("kc-refresh-token", keycloak.refreshToken);
+
+}).error(() => {
+
+});
