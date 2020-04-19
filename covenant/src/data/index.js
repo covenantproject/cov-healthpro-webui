@@ -1,11 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
+const API_URL = "http://blockchain.eastus.cloudapp.azure.com:8080/covid_service";
+
+export default new Vuex.Store({
     state: {
-        count: 0
+        count: 0,
+        searchPatient: {}
+
     },
     getters: {
         getCounter (state) {
@@ -13,18 +18,17 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
-        incrementCounter () {
-            this.$store.dispatch("incrementAction", 1)
+        incrementCounter (state) {
+            state.counter += 1;
+        },
+        setSearchPatient(state, data) {
+            this.state.searchPatient = data;
         }
     },
     actions: {
-        fetchExample: function() {
-            return this.axios.get("apiUrl").then((response) => {
-                console.log(response.data);
-            });
+        fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
+            return axios.get(API_URL + "/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
+                commit("setPatientForSearch", result.data));
         }
     }
 });
-
-export default store;
-

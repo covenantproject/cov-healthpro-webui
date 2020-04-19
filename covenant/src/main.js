@@ -1,13 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
-import axios from 'axios';
 import router from './router/index.js';
 import './../node_modules/bulma/css/bulma.css';
 import store from './data/index.js';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex);
-Vue.use(axios);
 
 Vue.config.productionTip = false;
 

@@ -30,15 +30,26 @@
     export default {
         name: "searchResult",
 
+        created() {
+            this.getSearchPatient();
+        },
         data: () => {
             return {
-                sampleData
+                sampleData,
+                loadingData: false,
+                searchPatient: {}
             }
         },
-
         computed: {
             getData: function() {
                 return sampleData.searchResults;
+            }
+        },
+        methods: {
+            getSearchPatient: function() {
+                this.$store.dispatch("fetchSearchPatient", 9898987656).then(result => {
+                    this.searchPatient = result.data;
+                });
             }
         }
     }

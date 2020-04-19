@@ -20,7 +20,7 @@
               <router-link
                       :to="{ name: 'root' }"
               >
-                Covenant
+                <strong>Covenant</strong>
               </router-link>
             </a>
           </div>
@@ -44,6 +44,9 @@
             <input id="search-box" class="input" type="text" placeholder="Search User">
           </label>
         </div>
+        <div class="column">
+          <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" >Search</button>
+        </div>
       </div>
       <router-view/>
     </div>
@@ -54,7 +57,9 @@
   export default {
     name: 'app',
     data() {
-      return {}
+      return {
+        searchIsLoading: true,
+      }
     }
   }
 </script>
