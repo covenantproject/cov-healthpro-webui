@@ -45,7 +45,7 @@
           </label>
         </div>
         <div class="column">
-          <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" >Search</button>
+          <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" @click="toggleLoad">Search</button>
         </div>
       </div>
       <router-view/>
@@ -58,7 +58,12 @@
     name: 'app',
     data() {
       return {
-        searchIsLoading: true,
+        searchIsLoading: false,
+      }
+    },
+    methods: {
+      toggleLoad() {
+        this.searchIsLoading = !this.searchIsLoading;
       }
     }
   }
