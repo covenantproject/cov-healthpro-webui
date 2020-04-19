@@ -18,7 +18,7 @@
           <div class="navbar-start">
             <a class="navbar-item">
               <router-link
-                :to="{ name: 'root' }"
+                      :to="{ name: 'root' }"
               >
                 Covenant
               </router-link>

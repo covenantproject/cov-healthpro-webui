@@ -1,7 +1,7 @@
 <template>
-  <box>
-    <user-info-component></user-info-component>
-  </box>
+    <box>
+        <user-info-component></user-info-component>
+    </box>
 </template>
 
 <script>
@@ -9,7 +9,7 @@
 
     export default {
         name: "UserInfo",
-      components: {UserInfoComponent}
+        components: {UserInfoComponent}
     }
 </script>
 

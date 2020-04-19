@@ -1,5 +1,7 @@
 <template>
-
+    <div>
+        <p>Login</p>
+    </div>
 </template>
 
 <script>
@@ -7,7 +9,3 @@
         name: "Login.vue"
     }
 </script>
-
-<style scoped>
-
-</style>
