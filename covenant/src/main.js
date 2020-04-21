@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 
 //keycloak init options
 let initOptions = {
-  url: 'http://13.233.36.178:9763/auth', realm: 'master', clientId: 'COV-Client', onLoad: 'login-required'
+  url: 'http://3.7.102.213:9763/auth', realm: 'master', clientId: 'COV-Client', onLoad: 'login-required'
 }
 
 let keycloak = Keycloak(initOptions);
