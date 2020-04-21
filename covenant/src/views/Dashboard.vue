@@ -17,6 +17,13 @@
             DashboardFoodWater,
             DashboardRequestForMedicalCare,
             DashboardQuarantineViolation
+        },
+        created() {
+            this.$store.dispatch("fetchOpenMedicalRequests", {
+                locationId: 338,
+                healthProId: 1,
+                quarantineRequestStatus: "Open"
+            }).then(result => console.log(result));
         }
     }
 </script>

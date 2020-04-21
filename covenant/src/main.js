@@ -7,8 +7,14 @@ import Vuex from 'vuex';
 import axios from 'axios';
 
 Vue.use(Vuex);
-
 Vue.config.productionTip = false;
+
+axios.interceptors.request.use((request) => {
+  console.log(request);
+  return request;
+}, (error) => {
+  return Promise.reject(error.message);
+});
 
 new Vue({
   store,
