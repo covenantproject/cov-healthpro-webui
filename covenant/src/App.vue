@@ -25,8 +25,8 @@
             </a>
           </div>
           <div class="navbar-end">
-            <a class="navbar-item">Username</a>
-            <div class="navbar-item">
+            <a class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>Username</a>
+            <div class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
               <div class="buttons">
                 <a class="button is-light">
                   Sign Out
@@ -37,11 +37,11 @@
         </div>
       </div>
     </nav>
-    <div class="container" id="main">
-      <div class="columns is-mobile is-centered">
+    <div class="container" id="main"> 
+      <div class="columns is-mobile is-centered" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
         <div class="column is-half">
           <label>
-            <input id="search-box" class="input" type="text" placeholder="Search User">
+            <input id="search-box" class="input" type="text"  placeholder="Search User">
           </label>
         </div>
         <div class="column">

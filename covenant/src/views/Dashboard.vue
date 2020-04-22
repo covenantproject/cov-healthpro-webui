@@ -3,7 +3,7 @@
         <dashboard-quarantine-violation></dashboard-quarantine-violation>
         <dashboard-request-for-medical-care></dashboard-request-for-medical-care>
         <dashboard-food-water></dashboard-food-water>
-    </div>
+    </div>    
 </template>
 
 <script>
