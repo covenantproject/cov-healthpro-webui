@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios'
 
-const baseUrl = 'http://3.7.102.213/covid_service/web/api/';
+const baseUrl = 'https://aws1.covn.in/covid_service/web/api/';
 //const baseUrl = 'http://localhost:8080/covid_service/web/api/';
 
 export default class ApiService {
