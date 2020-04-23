@@ -1,8 +1,8 @@
 /* eslint-disable */
 import axios from 'axios'
 
-//const baseUrl = 'http://3.7.102.213:8080/covid_service/api/';
-const baseUrl = 'http://localhost:8080/covid_service/api/';
+const baseUrl = 'http://3.7.102.213/covid_service/web/api/';
+//const baseUrl = 'http://localhost:8080/covid_service/web/api/';
 
 export default class ApiService {
 
@@ -11,6 +11,7 @@ export default class ApiService {
   }  
 
   sendSms(phoneNumbers, message){
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("kc-token")
     let url="sendSms?mobileNos="+phoneNumbers+"&message="+message;
     return axios
     .post(baseUrl + url)
