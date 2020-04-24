@@ -41,7 +41,10 @@
                     </div>
                 </div>
                 <div class="column is-two-thirds">
-                    <geo-map></geo-map>
+                    <geo-map
+                        v-bind:latitude="getQuarantineLatitude()"
+                        v-bind:longitude="getQuarantineLongitude()"
+                    ></geo-map>
                 </div>
             </div>
         </div>
