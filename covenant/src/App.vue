@@ -39,12 +39,12 @@
     </nav>
     <div class="container" id="main">
       <div class="columns is-mobile is-centered">
-        <div class="column is-half">
+        <div class="column is-three-fifths">
           <label>
             <input id="search-box" class="input" type="text" placeholder="Search User">
           </label>
         </div>
-        <div class="column">
+        <div class="column is-one-fifth">
           <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" @click="toggleLoad">Search</button>
         </div>
       </div>

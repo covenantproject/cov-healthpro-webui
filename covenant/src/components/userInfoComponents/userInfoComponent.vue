@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="columns">
-                <div class="column">
+                <div class="column is-one-third">
                     <div>
                         <p class="info-title">Quarantine Status</p>
                         <p>{{getQuarantineStatus()}}</p>
@@ -40,7 +40,7 @@
                         <p>{{getQuarantineLongitude()}}</p>
                     </div>
                 </div>
-                <div class="column is-centered">
+                <div class="column is-two-thirds">
                     <geo-map></geo-map>
                 </div>
             </div>
