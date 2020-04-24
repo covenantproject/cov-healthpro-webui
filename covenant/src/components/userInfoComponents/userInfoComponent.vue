@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="column is-two-thirds">
-                    <geo-map
+                    <geo-map id="geo-map"
                         v-bind:latitude="getQuarantineLatitude()"
                         v-bind:longitude="getQuarantineLongitude()"
                     ></geo-map>
@@ -120,6 +120,11 @@
 
     #message-text-box {
         margin-top: 1rem;
+    }
+
+    #geo-map {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
     }
 
     .info-title {
