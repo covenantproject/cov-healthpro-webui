@@ -32,8 +32,6 @@ export default new Vuex.Store({
             return axios.get("api/getLocationAndRole", {params});
         },
         fetchOpenMedicalRequests(params) {
-                console.log("dispatched fetchOpenMedicalRequests");
-                console.log(params);
                 return axios.get("/api/searchPatient?", {params});
         },
         fetchPatientInfo(params) {
@@ -45,6 +43,5 @@ export default new Vuex.Store({
         savePatientProviderRelationship(params) {
             return axios.post("/api/savePatientProviderRelationship?", {params})
         }
-        // http://blockchain.eastus.cloudapp.azure.com:8080/covid_service/api/searchPatient?locationId=338&healthProId=1&quarantineRequestStatus=Open
     }
 });
