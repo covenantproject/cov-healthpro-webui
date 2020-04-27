@@ -17,37 +17,50 @@
                     <p>{{getCovidStatus()}}</p>
                 </div>
             </div>
-            <div>
-                <p class="info-title">Quarantine Status</p>
-                <p>{{getQuarantineStatus()}}</p>
+            <div class="columns">
+                <div class="column is-one-third">
+                    <div>
+                        <p class="info-title">Quarantine Status</p>
+                        <p>{{getQuarantineStatus()}}</p>
+                    </div>
+                    <div>
+                        <p class="info-title">Demographics</p>
+                        <p>{{getSex()}} {{getAge()}} ({{getBirthdayDDMMYYYY()}})</p>
+                    </div>
+                    <div>
+                        <p class="info-title">Contact Info</p>
+                        <p>{{getContactInfo()}}</p>
+                    </div>
+                    <div>
+                        <p class="info-title">Quarantine Latitude</p>
+                        <p>{{getQuarantineLatitude()}}</p>
+                    </div>
+                    <div>
+                        <p class="info-title">Quarantine Longitude</p>
+                        <p>{{getQuarantineLongitude()}}</p>
+                    </div>
+                </div>
+                <div class="column is-two-thirds">
+                    <geo-map id="geo-map"
+                        v-bind:latitude="getQuarantineLatitude()"
+                        v-bind:longitude="getQuarantineLongitude()"
+                    ></geo-map>
+                </div>
             </div>
-            <div>
-                <p class="info-title">Demographics</p>
-                <p>{{getSex()}} {{getAge()}} ({{getBirthdayDDMMYYYY()}})</p>
-            </div>
-            <div>
-                <p class="info-title">Contact Info</p>
-                <p>{{getContactInfo()}}</p>
-            </div>
-            <div>
-                <p class="info-title">Quarantine Latitude</p>
-                <p>{{getQuarantineLatitude()}}</p>
-            </div>
-            <div>
-                <p class="info-title">Quarantine Longitude</p>
-                <p>{{getQuarantineLongitude()}}</p>
-            </div>
-            <!--      <l-map ref="myMap"> </l-map>-->
         </div>
     </div>
 </template>
 
 <script>
     import sampleData from "../../data/data";
+    import geoMap from "../geoMappingComponent/geoMap";
 
     export default {
         name: "userInfoComponent",
 
+        components: {
+            geoMap
+        },
         data: () => {
             return {
                 sampleData
@@ -96,14 +109,7 @@
             getContactInfo() {
                 return sampleData.userProfile.contactInfo;
             }
-        },
-        computed: {},
-        mounted() {
-            // this.$nextTick(() => {
-            //   this.$refs.myMap.mapObject.setView([51.505, -0.09], 13);
-            // });
-        },
-
+        }
     }
 </script>
 
@@ -114,6 +120,11 @@
 
     #message-text-box {
         margin-top: 1rem;
+    }
+
+    #geo-map {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
     }
 
     .info-title {

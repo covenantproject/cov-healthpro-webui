@@ -8,8 +8,14 @@ import * as Keycloak from 'keycloak-js'
 //import axios from 'axios';
 
 Vue.use(Vuex);
-
 Vue.config.productionTip = false;
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyCmAfPlAloWEJYI4VqtAXOEZdvatjzAvEA",
+    libraries: "places" // necessary for places input
+  }
+});
 
 //keycloak init options 
 //CovenantProd , 26b5e262-27e9-491a-a9df-efea174ee54c
@@ -40,3 +46,10 @@ keycloak.init({ onLoad: initOptions.onLoad, "checkLoginIframe": false }).success
 }).error(() => {
 
 });
+
+// axios.interceptors.request.use((request) => {
+//   console.log(request);
+//   return request;
+// }, (error) => {
+//   return Promise.reject(error.message);
+// });

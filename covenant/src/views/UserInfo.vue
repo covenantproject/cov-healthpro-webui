@@ -12,7 +12,3 @@
         components: {UserInfoComponent}
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -4,8 +4,6 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
-const API_URL = "http://blockchain.eastus.cloudapp.azure.com:8080/covid_service";
-
 export default new Vuex.Store({
     state: {
         count: 0,
@@ -26,9 +24,24 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
-            return axios.get(API_URL + "/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
-                commit("setPatientForSearch", result.data));
+        // fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
+        //     return axios.get(API_URL + "/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
+        //         commit("setPatientForSearch", result.data));
+        // },
+        fetchLocationsAndRolesForUser(params) {
+            return axios.get("api/getLocationAndRole", {params});
+        },
+        fetchOpenMedicalRequests(params) {
+                return axios.get("/api/searchPatient?", {params});
+        },
+        fetchPatientInfo(params) {
+            return axios.get("/api/getPatientInfo?", {params})
+        },
+        fetchLocationHierarchy(params) {
+            return axios.get("/api/getLocationHierarchy", {params})
+        },
+        savePatientProviderRelationship(params) {
+            return axios.post("/api/savePatientProviderRelationship?", {params})
         }
     }
 });
