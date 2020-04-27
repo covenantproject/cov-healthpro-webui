@@ -17,7 +17,7 @@ const routes = new Router({
             path: "/",
             name: "root",
             type: "root",
-            component: Dashboard,
+            component: Dashboard
         },
         {
             path: "/login",
@@ -25,14 +25,14 @@ const routes = new Router({
             component: Login
         },
         {
-      path: "/sendMessage",
-      name: "sendMessage",
-      component: SendMessage
-    },
-    {
+            path: "/sendMessage",
+            name: "sendMessage",
+            component: SendMessage
+        },
+        {
             path: "/searchResults",
             name: "searchResults",
-            component: SearchResults,
+            component: SearchResults
         },
         {
             path: "/userInfo",

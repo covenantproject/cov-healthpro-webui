@@ -10,48 +10,49 @@
                     </a>
                 </div>
 
-              <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
 
             <div id="navbarBasicExample" class="navbar-menu">
-              <div class="navbar-start">
-                <a class="navbar-item">
-                  <router-link
-                          :to="{ name: 'root' }"
-                  >
-                    <strong>Covenant</strong>
-                  </router-link>
-                </a>
-              </div>
-              <div class="navbar-end">
-                <a class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>Username</a>
-                <div class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
-                  <div class="buttons">
-                    <a class="button is-light">
-                      Sign Out
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        <router-link
+                                :to="{ name: 'root' }"
+                        >
+                            <strong>Covenant</strong>
+                        </router-link>
                     </a>
-                  </div>
                 </div>
-              </div>
+                <div class="navbar-end">
+                    <a class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>Username</a>
+                    <div class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
+                        <div class="buttons">
+                            <a class="button is-light">
+                                Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
-    <div class="container" id="main"> 
-        <div class="columns is-mobile is-centered" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
-            <div class="column is-three-fifths">
-              <label>
-                <input id="search-box" class="input" type="text"  placeholder="Search User">
-              </label>
+        <div class="container" id="main">
+            <div class="columns is-mobile is-centered" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
+                <div class="column is-three-fifths">
+                    <label>
+                        <input id="search-box" class="input" type="text" placeholder="Search User">
+                    </label>
+                </div>
+                <div class="column is-one-fifth">
+                    <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" @click="toggleLoad">Search
+                    </button>
+                </div>
             </div>
-            <div class="column is-one-fifth">
-              <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" @click="toggleLoad">Search</button>
-                </button>
-            </div>
+            <router-view/>
         </div>
-        <router-view/>
     </div>
 </template>
 <script>
