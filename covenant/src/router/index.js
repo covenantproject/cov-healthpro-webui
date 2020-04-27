@@ -4,6 +4,7 @@ import Dashboard from "../views/Dashboard";
 import Login from "../views/Login";
 import SearchResults from "../views/SearchResults";
 import UserInfo from "../views/UserInfo";
+import SendMessage from '../views/SendMessage'
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ const routes = new Router({
             component: Login
         },
         {
+      path: "/sendMessage",
+      name: "sendMessage",
+      component: SendMessage
+    },
+    {
             path: "/searchResults",
             name: "searchResults",
             component: SearchResults,
