@@ -4,8 +4,8 @@ import router from './router/index.js';
 import './../node_modules/bulma/css/bulma.css';
 import store from './data/index.js';
 import Vuex from 'vuex';
-import * as Keycloak from 'keycloak-js'
-//import axios from 'axios';
+import * as Keycloak from 'keycloak-js';
+import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(Vuex);
 Vue.config.productionTip = false;
@@ -24,7 +24,7 @@ let initOptions = {
   url: 'http://3.7.102.213:9763/auth', realm: 'master', clientId: 'CovenantProd', onLoad: 'login-required', "credentials": {
     "secret": "26b5e262-27e9-491a-a9df-efea174ee54c"
   }  
-}
+};
 
 let keycloak = Keycloak(initOptions);
 
