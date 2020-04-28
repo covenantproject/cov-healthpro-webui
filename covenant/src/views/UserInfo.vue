@@ -11,4 +11,5 @@
         name: "UserInfo",
         components: {UserInfoComponent}
     }
+
 </script>

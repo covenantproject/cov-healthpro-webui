@@ -57,14 +57,19 @@
 
     export default {
         name: "userInfoComponent",
-
         components: {
             geoMap
         },
         data: () => {
             return {
-                sampleData
+                sampleData,
+                patient: {}
             }
+        },
+        created() {
+            this.$store.dispatch("fetchPatientInfo", {
+                patientId:2
+            }).then(result => console.log(result));
         },
         methods: {
             getFirstName() {
