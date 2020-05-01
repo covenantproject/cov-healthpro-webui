@@ -15,25 +15,25 @@
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
-            </div>
 
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item">
-                        <router-link
-                                :to="{ name: 'root' }"
-                        >
-                            <strong>Covenant</strong>
-                        </router-link>
-                    </a>
-                </div>
-                <div class="navbar-end">
-                    <a class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>Username</a>
-                    <div class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
-                        <div class="buttons">
-                            <a class="button is-light">
-                                Sign Out
-                            </a>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item">
+                            <router-link
+                                    :to="{ name: 'root' }"
+                            >
+                                <strong>Covenant</strong>
+                            </router-link>
+                        </a>
+                    </div>
+                    <div class="navbar-end">
+                        <a class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>Username</a>
+                        <div class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
+                            <div class="buttons">
+                                <a class="button is-light">
+                                    Sign Out
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
