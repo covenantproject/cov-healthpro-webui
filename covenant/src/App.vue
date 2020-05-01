@@ -27,8 +27,9 @@
                         </a>
                     </div>
                     <div class="navbar-end">
-                        <a class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>Username</a>
-                        <div class="navbar-item" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
+                        <a class="navbar-item" v-if='hideNavItemsOnUrls()'>Register</a>
+                        <a class="navbar-item" v-if='hideNavItemsOnUrls()'>Username</a>
+                        <div class="navbar-item" v-if='hideNavItemsOnUrls()'>
                             <div class="buttons">
                                 <a class="button is-light">
                                     Sign Out
@@ -40,7 +41,7 @@
             </div>
         </nav>
         <div class="container" id="main">
-            <div class="columns is-mobile is-centered" v-if='this.$route.path != "/login"&&this.$route.path != "/sendMessage"'>
+            <div class="columns is-mobile is-centered" v-if='hideSearchBoxOnUrls()'>
                 <div class="column is-three-fifths">
                     <label>
                         <input id="search-box" class="input" type="text" placeholder="Search User">
@@ -66,6 +67,12 @@
         methods: {
             toggleLoad() {
                 this.searchIsLoading = !this.searchIsLoading;
+            },
+            hideSearchBoxOnUrls(){
+                return this.$route.path !== "/login" && this.$route.path !== "/sendMessage" && this.$route.path !== "/registration";
+            },
+            hideNavItemsOnUrls() {
+                return this.$route.path !== "/login" && this.$route.path !== "/sendMessage";
             }
         }
     }

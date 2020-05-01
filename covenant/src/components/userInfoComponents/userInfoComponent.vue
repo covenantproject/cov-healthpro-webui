@@ -53,7 +53,7 @@
 
 <script>
     import sampleData from "../../data/data";
-    import geoMap from "../geoMappingComponent/geoMap";
+    import geoMap from "../geoMappingComponents/geoMap";
 
     export default {
         name: "userInfoComponent",

@@ -2,6 +2,7 @@ import Router from "vue-router";
 import Vue from "vue";
 import Dashboard from "../views/Dashboard";
 import Login from "../views/Login";
+import Registration from "../views/Registration";
 import SearchResults from "../views/SearchResults";
 import UserInfo from "../views/UserInfo";
 import SendMessage from '../views/SendMessage'
@@ -23,6 +24,11 @@ const routes = new Router({
             path: "/login",
             name: "login",
             component: Login
+        },
+        {
+            path: "/registration",
+            name: "registration",
+            component: Registration
         },
         {
             path: "/sendMessage",
