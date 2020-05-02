@@ -27,7 +27,13 @@
                         </a>
                     </div>
                     <div class="navbar-end">
-                        <a class="navbar-item" v-if='hideNavItemsOnUrls()'>Register</a>
+                        <a class="navbar-item" v-if='hideNavItemsOnUrls()'>
+                            <router-link
+                                    :to="{ name: 'registration' }"
+                            >
+                                Register
+                            </router-link>
+                        </a>
                         <a class="navbar-item" v-if='hideNavItemsOnUrls()'>Username</a>
                         <div class="navbar-item" v-if='hideNavItemsOnUrls()'>
                             <div class="buttons">
@@ -68,7 +74,7 @@
             toggleLoad() {
                 this.searchIsLoading = !this.searchIsLoading;
             },
-            hideSearchBoxOnUrls(){
+            hideSearchBoxOnUrls() {
                 return this.$route.path !== "/login" && this.$route.path !== "/sendMessage" && this.$route.path !== "/registration";
             },
             hideNavItemsOnUrls() {

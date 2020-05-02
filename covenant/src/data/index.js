@@ -29,19 +29,19 @@ export default new Vuex.Store({
         //         commit("setPatientForSearch", result.data));
         // },
         fetchLocationsAndRolesForUser(params) {
-            return axios.get("api/getLocationAndRole", {params});
+            return axios.get("api/getLocationAndRole", params);
         },
-        fetchOpenMedicalRequests(params) {
-                return axios.get("/api/searchPatient?", {params});
+        fetchOpenMedicalRequests() {
+                return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457&size&from&firstName&lastName&covid19Status&quarantineStatus&isolationStatus&quarantineRequestStatus&medicalRequestStatus&suppliesRequestStatus&geofenceCompliant&heartbeatStatus&healthStatusAlert");
         },
         fetchPatientInfo(params) {
-            return axios.get("/api/getPatientInfo?", {params})
+            return axios.get("/api/getPatientInfo?", params)
         },
         fetchLocationHierarchy(params) {
-            return axios.get("/api/getLocationHierarchy", {params})
+            return axios.get("/api/getLocationHierarchy", params)
         },
         savePatientProviderRelationship(params) {
-            return axios.post("/api/savePatientProviderRelationship?", {params})
+            return axios.post("/api/savePatientProviderRelationship?", params)
         }
     }
 });

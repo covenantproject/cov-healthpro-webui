@@ -1,26 +1,31 @@
 <template>
     <div>
-        <dashboard-quarantine-violation
-                v-bind:firstName= "quarantineViolation.firstName"
-                v-bind:lastName= "quarantineViolation.lastName"
-                v-bind:lastReported ="quarantineViolation.lastReported"
-                v-bind:duration ="quarantineViolation.duration"
-                v-bind:distance ="quarantineViolation.distance"
-        />
+        <button @click="fireApiCall()" class="button is-normal">Normal</button>
+        <dashboard-quarantine-violation />
+        <dashboard-request-for-medical-care />
+        <dashboard-food-water />
 
-        <dashboard-request-for-medical-care
-                v-bind:firstName ="requestForMedicalCare.firstName"
-                v-bind:lastName ="requestForMedicalCare.lastName"
-                v-bind:reported ="requestForMedicalCare.lastReported"
-                v-bind:message ="requestForMedicalCare.duration"
-                v-bind:distance ="requestForMedicalCare.distance"
-        />
-        <dashboard-food-water
-                v-bind:firstName ="foodWater.firstName"
-                v-bind:lastName ="foodWater.lastName"
-                v-bind:reported ="foodWater.lastReported"
-                v-bind:message ="foodWater.duration"
-        />
+<!--        <dashboard-quarantine-violation-->
+<!--                v-bind:firstName= "quarantineViolation.firstName"-->
+<!--                v-bind:lastName= "quarantineViolation.lastName"-->
+<!--                v-bind:lastReported ="quarantineViolation.lastReported"-->
+<!--                v-bind:duration ="quarantineViolation.duration"-->
+<!--                v-bind:distance ="quarantineViolation.distance"-->
+<!--        />-->
+
+<!--        <dashboard-request-for-medical-care-->
+<!--                v-bind:firstName ="requestForMedicalCare.firstName"-->
+<!--                v-bind:lastName ="requestForMedicalCare.lastName"-->
+<!--                v-bind:reported ="requestForMedicalCare.lastReported"-->
+<!--                v-bind:message ="requestForMedicalCare.duration"-->
+<!--                v-bind:distance ="requestForMedicalCare.distance"-->
+<!--        />-->
+<!--        <dashboard-food-water-->
+<!--                v-bind:firstName ="foodWater.firstName"-->
+<!--                v-bind:lastName ="foodWater.lastName"-->
+<!--                v-bind:reported ="foodWater.lastReported"-->
+<!--                v-bind:message ="foodWater.duration"-->
+<!--        />-->
     </div>
 </template>
 
@@ -38,35 +43,54 @@
         },
         data: () => {
             return {
-                quarantineViolation: {
-                    firstName: "",
-                    lastName: "",
-                    lastReported: Number,
-                    duration: Number,
-                    distance: Number
-                },
-                requestForMedicalCare: {
-                    firstName: "",
-                    lastName: "",
-                    reported: Number,
-                    message: "",
-                    distance: Number
-                },
-                foodWater: {
-                    firstName: "",
-                    lastName: "",
-                    reported: Number,
-                    message: "",
-                    distance: Number
-                }
+                // quarantineViolation: {
+                //     firstName: "",
+                //     lastName: "",
+                //     lastReported: Number,
+                //     duration: Number,
+                //     distance: Number
+                // },
+                // requestForMedicalCare: {
+                //     firstName: "",
+                //     lastName: "",
+                //     reported: Number,
+                //     message: "",
+                //     distance: Number
+                // },
+                // foodWater: {
+                //     firstName: "",
+                //     lastName: "",
+                //     reported: Number,
+                //     message: "",
+                //     distance: Number
+                // }
             }
         },
-        created() {
-            this.$store.dispatch("fetchOpenMedicalRequests", {
-                locationId: 338,
-                healthProId: 1,
-                quarantineRequestStatus: "Open"
-            }).then(result => console.log(result));
-        }
+        methods: {
+            fireApiCall: function() {
+                console.log("fire");
+                console.log("request");
+                this.$store.dispatch("fetchOpenMedicalRequests", {
+                    phoneNumber: 9791713457,
+                    healthProId: 1
+                }).then(result => console.log(result));
+            }
+        },
+        // created() {
+        //     console.log("request");
+        //     this.$store.dispatch("fetchOpenMedicalRequests", {
+        //         phoneNumber: 9791713457,
+        //         healthProId: 1
+        //     }).then(result => console.log(result));
+        // },
+        // action: {
+        //     fireApiCall2: function() {
+        //         console.log("request");
+        //         this.$store.dispatch("fetchOpenMedicalRequests", {
+        //             phoneNumber: 9791713457,
+        //             healthProId: 1
+        //         }).then(result => console.log(result));
+        //     }
+        // }
     }
 </script>

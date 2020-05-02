@@ -6,6 +6,7 @@ import store from './data/index.js';
 import Vuex from 'vuex';
 import * as Keycloak from 'keycloak-js'
 import * as VueGoogleMaps from "vue2-google-maps";
+import axios from "axios";
 
 Vue.use(Vuex);
 Vue.config.productionTip = false;
@@ -47,9 +48,10 @@ keycloak.init({ onLoad: initOptions.onLoad, "checkLoginIframe": false }).success
 
 });
 
-// axios.interceptors.request.use((request) => {
-//   console.log(request);
-//   return request;
-// }, (error) => {
-//   return Promise.reject(error.message);
-// });
+axios.interceptors.request.use((request) => {
+  console.log("interceptor");
+  console.log(request);
+  return request;
+}, (error) => {
+  return Promise.reject(error.message);
+});
