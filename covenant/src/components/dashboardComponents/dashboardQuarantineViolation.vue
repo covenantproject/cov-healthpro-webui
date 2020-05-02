@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <p><strong>People currently Non-Compliant</strong></p>
+        <p><strong>Individuals currently Non-Compliant</strong></p>
         <table class="table is-fullwidth is-hoverable">
             <thead>
             <tr>

@@ -4,7 +4,8 @@ import Dashboard from "../views/Dashboard";
 import Registration from "../views/Registration";
 import SearchResults from "../views/SearchResults";
 import UserInfo from "../views/UserInfo";
-import SendMessage from '../views/SendMessage'
+import SendMessage from '../views/SendMessage';
+import Search from '../views/Search';
 
 Vue.use(Router);
 
@@ -38,7 +39,13 @@ const routes = new Router({
             path: "/userInfo",
             name: "userInfo",
             component: UserInfo
-        }
+        },
+        {
+            path: "/search",
+            name: "search",
+            component: Search
+        },
+
     ]
 });
 

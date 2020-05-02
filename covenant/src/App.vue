@@ -55,17 +55,6 @@
         </nav>
         <progress class="progress is-small is-primary" max="100">15%</progress>
         <div class="container" id="main">
-            <div class="columns is-mobile is-centered" v-if='hideSearchBoxOnUrls()'>
-                <div class="column is-three-fifths">
-                    <label>
-                        <input id="search-box" class="input" type="text" placeholder="Search User">
-                    </label>
-                </div>
-                <div class="column is-one-fifth">
-                    <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" @click="onSearchButtonClicked">Search
-                    </button>
-                </div>
-            </div>
             <router-view/>
         </div>
     </div>
@@ -79,16 +68,9 @@
             }
         },
         methods: {
-            onSearchButtonClicked(){
-                this.toggleLoad();
-                // TODO: Dispatch Api call
-            },
-            toggleLoad() {
-                this.searchIsLoading = !this.searchIsLoading;
-            },
-            hideSearchBoxOnUrls() {
-                return this.$route.path !== "/login" && this.$route.path !== "/sendMessage" && this.$route.path !== "/registration" && this.$route.path !== "/";
-            },
+            // hideSearchBoxOnUrls() {
+            //     return this.$route.path !== "/login" && this.$route.path !== "/sendMessage" && this.$route.path !== "/registration" && this.$route.path !== "/";
+            // },
             hideNavItemsOnUrls() {
                 return this.$route.path !== "/login" && this.$route.path !== "/sendMessage";
             }
