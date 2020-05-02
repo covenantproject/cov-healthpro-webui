@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="fireApiCall()" class="button is-normal">Normal</button>
+        <button @click="fetchOpenMedicalRequests()" class="button is-normal">Temporary Test Button</button>
         <dashboard-quarantine-violation />
         <dashboard-request-for-medical-care />
         <dashboard-food-water />
@@ -67,7 +67,7 @@
             }
         },
         methods: {
-            fireApiCall: function() {
+            fetchOpenMedicalRequests: function() {
                 console.log("fire");
                 console.log("request");
                 this.$store.dispatch("fetchOpenMedicalRequests", {
@@ -94,3 +94,9 @@
         // }
     }
 </script>
+
+<style>
+    tr {
+        cursor: pointer;
+    }
+</style>

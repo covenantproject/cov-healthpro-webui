@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <p><strong>Requests for Food and Water</strong></p>
-        <table class="table is-fullwidth">
+        <table class="table is-fullwidth is-hoverable">
             <thead>
             <tr>
                 <th>First Name</th>
@@ -11,7 +11,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" :key="item.index">
+            <tr v-for="item in getData" @click="onRowClicked" :key="item.index">
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.reported}}</td>
@@ -33,7 +33,11 @@
                 sampleData
             }
         },
-
+        methods: {
+            onRowClicked: function(value) {
+                console.log("Food water table row clicked " + value);
+            }
+        },
         computed: {
             getData: function() {
                 return sampleData.foodRequest;

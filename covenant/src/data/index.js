@@ -7,12 +7,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         count: 0,
+        showProgressBarCount: 0, // if count > 0 show indeterminate progress bar
         searchPatient: {}
 
     },
     getters: {
         getCounter (state) {
             return state.count;
+        },
+        getShowProgressBarCount (state) {
+            return state.showProgressBarCount;
         }
     },
     mutations: {
@@ -21,18 +25,21 @@ export default new Vuex.Store({
         },
         setSearchPatient(state, data) {
             this.state.searchPatient = data;
+        },
+        setProgressBar(state, data) {
+            this.state.showProgressBarCount = data;
         }
     },
     actions: {
-        // fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
-        //     return axios.get(API_URL + "/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
-        //         commit("setPatientForSearch", result.data));
-        // },
+        fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
+            return axios.get("/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
+                commit("setPatientForSearch", result.data));
+        },
         fetchLocationsAndRolesForUser(params) {
             return axios.get("api/getLocationAndRole", params);
         },
         fetchOpenMedicalRequests() {
-                return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457&size&from&firstName&lastName&covid19Status&quarantineStatus&isolationStatus&quarantineRequestStatus&medicalRequestStatus&suppliesRequestStatus&geofenceCompliant&heartbeatStatus&healthStatusAlert");
+                return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457");
         },
         fetchPatientInfo(params) {
             return axios.get("/api/getPatientInfo?", params)
