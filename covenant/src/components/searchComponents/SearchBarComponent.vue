@@ -1,6 +1,6 @@
 <template>
     <div class="container" id="main">
-        <div class="columns is-mobile is-centered" v-if=''>
+        <div class="columns is-mobile is-centered">
             <div class="column is-three-fifths">
                 <label>
                     <input id="search-box" class="input" type="text" placeholder="Search User">
