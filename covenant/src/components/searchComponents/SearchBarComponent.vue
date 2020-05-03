@@ -7,7 +7,7 @@
                 </label>
             </div>
             <div class="column is-one-fifth">
-                <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-primary']" type="submit" @click="onSearchButtonClicked">Search
+                <button v-bind:class="[searchIsLoading ? 'is-loading' : '', 'button', 'is-info']" type="submit" @click="onSearchButtonClicked">Search
                 </button>
             </div>
         </div>

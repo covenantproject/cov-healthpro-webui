@@ -1,6 +1,15 @@
 <template>
     <div class="box">
-        <p><strong>Individuals currently Non-Compliant</strong></p>
+        <section class="hero is-light">
+            <div class="hero-body">
+                <div class="container">
+                    <h2 class="subtitle">
+                        <strong>Individuals currently Non-Compliant</strong>
+                    </h2>
+                </div>
+            </div>
+        </section>
+
         <table class="table is-fullwidth is-hoverable">
             <thead>
             <tr>

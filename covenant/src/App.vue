@@ -22,7 +22,7 @@
                             <router-link
                                     :to="{ name: 'root' }"
                             >
-                                <strong>Covenant</strong>
+                                <img src="./assets/cov-logo.png" height="90" width="135">
                             </router-link>
                         </a>
                     </div>
@@ -31,21 +31,21 @@
                             <router-link
                                     :to="{ name: 'search' }"
                             >
-                                Search
+                                <strong>Search</strong>
                             </router-link>
                         </a>
                         <a class="navbar-item" v-if='hideNavItemsOnUrls()'>
                             <router-link
                                     :to="{ name: 'registration' }"
                             >
-                                Register
+                                <strong>Register</strong>
                             </router-link>
                         </a>
-                        <a class="navbar-item" v-if='hideNavItemsOnUrls()'>Username</a>
+                        <a class="navbar-item" v-if='hideNavItemsOnUrls()'><strong>Username</strong></a>
                         <div class="navbar-item" v-if='hideNavItemsOnUrls()'>
                             <div class="buttons">
                                 <a class="button is-light">
-                                    Sign Out
+                                    <strong>Sign Out</strong>
                                 </a>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </nav>
-        <progress class="progress is-small is-primary" max="100">15%</progress>
+        <progress class="progress is-small is-info" max="100">15%</progress>
         <div class="container" id="main">
             <router-view/>
         </div>
