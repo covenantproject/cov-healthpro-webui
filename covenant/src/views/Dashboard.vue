@@ -1,69 +1,31 @@
 <template>
     <div>
-        <button @click="fetchOpenMedicalRequests()" class="button is-normal">Temporary Test Button</button>
+        <button @click="fetchDashboardSuppliesRequestStatus()" class="button is-normal">Temporary Test Button</button>
         <dashboard-quarantine-violation />
         <dashboard-request-for-medical-care />
-        <dashboard-food-water />
-
-<!--        <dashboard-quarantine-violation-->
-<!--                v-bind:firstName= "quarantineViolation.firstName"-->
-<!--                v-bind:lastName= "quarantineViolation.lastName"-->
-<!--                v-bind:lastReported ="quarantineViolation.lastReported"-->
-<!--                v-bind:duration ="quarantineViolation.duration"-->
-<!--                v-bind:distance ="quarantineViolation.distance"-->
-<!--        />-->
-
-<!--        <dashboard-request-for-medical-care-->
-<!--                v-bind:firstName ="requestForMedicalCare.firstName"-->
-<!--                v-bind:lastName ="requestForMedicalCare.lastName"-->
-<!--                v-bind:reported ="requestForMedicalCare.lastReported"-->
-<!--                v-bind:message ="requestForMedicalCare.duration"-->
-<!--                v-bind:distance ="requestForMedicalCare.distance"-->
-<!--        />-->
-<!--        <dashboard-food-water-->
-<!--                v-bind:firstName ="foodWater.firstName"-->
-<!--                v-bind:lastName ="foodWater.lastName"-->
-<!--                v-bind:reported ="foodWater.lastReported"-->
-<!--                v-bind:message ="foodWater.duration"-->
-<!--        />-->
+        <dashboard-supplies-request
+                v-bind:supplies-request-status-object-array="suppliesRequestStatusResponseObjectArray"
+        />
     </div>
 </template>
 
 <script>
     import DashboardQuarantineViolation from "../components/dashboardComponents/dashboardQuarantineViolation";
     import DashboardRequestForMedicalCare from "../components/dashboardComponents/dashboardRequestMedical";
-    import DashboardFoodWater from "../components/dashboardComponents/dashboardFoodWater";
+    import DashboardSuppliesRequest from "../components/dashboardComponents/dashboardSuppliesRequest";
 
     export default {
         name: "Dashboard",
         components: {
-            DashboardFoodWater,
+            DashboardSuppliesRequest,
             DashboardRequestForMedicalCare,
             DashboardQuarantineViolation
         },
         data: () => {
             return {
-                // quarantineViolation: {
-                //     firstName: "",
-                //     lastName: "",
-                //     lastReported: Number,
-                //     duration: Number,
-                //     distance: Number
-                // },
-                // requestForMedicalCare: {
-                //     firstName: "",
-                //     lastName: "",
-                //     reported: Number,
-                //     message: "",
-                //     distance: Number
-                // },
-                // foodWater: {
-                //     firstName: "",
-                //     lastName: "",
-                //     reported: Number,
-                //     message: "",
-                //     distance: Number
-                // }
+                quarantineViolationResponseObjectArray: null,
+                requestForMedicalCareResponseObjectArray: null,
+                suppliesRequestStatusResponseObjectArray: null,
             }
         },
         methods: {
@@ -74,24 +36,20 @@
                     phoneNumber: 9791713457,
                     healthProId: 1
                 }).then(result => console.log(result));
-            }
+            },
+            fetchDashboardSuppliesRequestStatus: function() {
+                console.log("fetch");
+                console.log("supplies");
+                // this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount());
+                this.$store.dispatch("fetchDashboardSuppliesRequestStatus", {
+                    suppliesRequestStatus: "Open",
+                    healthProId: 1
+                }).then(result => {
+                    this.suppliesRequestStatusResponseObjectArray = result.data.patients;
+                    console.log(result.data.patients);
+                });
+            },
         },
-        // created() {
-        //     console.log("request");
-        //     this.$store.dispatch("fetchOpenMedicalRequests", {
-        //         phoneNumber: 9791713457,
-        //         healthProId: 1
-        //     }).then(result => console.log(result));
-        // },
-        // action: {
-        //     fireApiCall2: function() {
-        //         console.log("request");
-        //         this.$store.dispatch("fetchOpenMedicalRequests", {
-        //             phoneNumber: 9791713457,
-        //             healthProId: 1
-        //         }).then(result => console.log(result));
-        //     }
-        // }
     }
 </script>
 

@@ -26,7 +26,7 @@ export default new Vuex.Store({
         setSearchPatient(state, data) {
             this.state.searchPatient = data;
         },
-        setProgressBar(state, data) {
+        setShowProgressBarCount(state, data) {
             this.state.showProgressBarCount = data;
         }
     },
@@ -38,17 +38,28 @@ export default new Vuex.Store({
         fetchLocationsAndRolesForUser(params) {
             return axios.get("api/getLocationAndRole", params);
         },
-        fetchOpenMedicalRequests() {
-                return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457");
-        },
         fetchPatientInfo(params) {
-            return axios.get("/api/getPatientInfo?", params)
+            return axios.get("/api/getPatientInfo?", params);
         },
         fetchLocationHierarchy(params) {
-            return axios.get("/api/getLocationHierarchy", params)
+            return axios.get("/api/getLocationHierarchy", params);
         },
         savePatientProviderRelationship(params) {
-            return axios.post("/api/savePatientProviderRelationship?", params)
+            return axios.post("/api/savePatientProviderRelationship?", params);
+        },
+        fetchOpenMedicalRequests() {
+            return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
+        },
+        fetchDashboardSuppliesRequestStatus() {
+            return axios.get("searchPatient?suppliesRequestStatus=Open&healthProId=1", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
         }
     }
 });

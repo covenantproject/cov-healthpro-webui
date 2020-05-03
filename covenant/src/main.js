@@ -49,7 +49,7 @@ keycloak.init({ onLoad: initOptions.onLoad, "checkLoginIframe": false }).success
 });
 
 axios.interceptors.request.use((request) => {
-  console.log("interceptor")
+  console.log("interceptor");
   console.log(request);
   return request;
 }, (error) => {

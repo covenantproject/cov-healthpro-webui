@@ -20,12 +20,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" @click="onRowClicked" :key="item.index">
-                <td>{{item.firstName}}</td>
-                <td>{{item.lastName}}</td>
-                <td>{{item.reported}}</td>
-                <td>{{item.message}}</td>
-            </tr>
+                <tr v-for="item in getData" @click="onRowClicked" :key="item.index">
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.reported}}</td>
+                    <td>{{item.message}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -42,6 +42,12 @@
                 sampleData
             }
         },
+        props: {
+            suppliesRequestStatusObjectArray: {
+                type: Array,
+                default: null
+            }
+        },
         methods: {
             onRowClicked: function(value) {
                 console.log("Food water table row clicked " + value);
@@ -49,12 +55,8 @@
         },
         computed: {
             getData: function() {
-                return sampleData.foodRequest;
+                return this.suppliesRequestStatusObjectArray ? this.suppliesRequestStatusObjectArray : sampleData.foodRequest;
             }
         }
     }
 </script>
-
-<style scoped>
-
-</style>
