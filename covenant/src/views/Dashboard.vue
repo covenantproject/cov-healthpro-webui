@@ -1,10 +1,14 @@
 <template>
     <div>
-        <button @click="fetchDashboardSuppliesRequestStatus()" class="button is-normal">Temporary Test Button</button>
-        <dashboard-quarantine-violation />
-        <dashboard-request-for-medical-care />
+        <button @click="fetchDashboardData()" class="button is-normal">Temporary Test Button</button>
+        <dashboard-quarantine-violation
+                v-bind:quarantine-violation-response-object-array="quarantineViolationResponseObjectArray"
+        />
+        <dashboard-request-for-medical-care
+                v-bind:request-for-medical-care-response-object-array="requestForMedicalCareResponseObjectArray"
+        />
         <dashboard-supplies-request
-                v-bind:supplies-request-status-object-array="suppliesRequestStatusResponseObjectArray"
+                v-bind:supplies-request-status-response-object-array="suppliesRequestStatusResponseObjectArray"
         />
     </div>
 </template>
@@ -37,9 +41,26 @@
                     healthProId: 1
                 }).then(result => console.log(result));
             },
-            fetchDashboardSuppliesRequestStatus: function() {
+            fetchDashboardData: function() {
                 console.log("fetch");
                 console.log("supplies");
+
+                this.$store.dispatch("fetchDashboardComplianceStatus", {
+                    suppliesRequestStatus: "Open",
+                    healthProId: 1
+                }).then(result => {
+                    this.quarantineViolationResponseObjectArray = result.data.patients;
+                    console.log(result.data.patients);
+                });
+
+                this.$store.dispatch("fetchDashboardMedicalRequestStatus", {
+                    suppliesRequestStatus: "Open",
+                    healthProId: 1
+                }).then(result => {
+                    this.requestForMedicalCareResponseObjectArray = result.data.patients;
+                    console.log(result.data.patients);
+                });
+
                 // this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount());
                 this.$store.dispatch("fetchDashboardSuppliesRequestStatus", {
                     suppliesRequestStatus: "Open",

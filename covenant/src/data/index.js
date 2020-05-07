@@ -31,35 +31,49 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
-            return axios.get("/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
-                commit("setPatientForSearch", result.data));
-        },
-        fetchLocationsAndRolesForUser(params) {
-            return axios.get("api/getLocationAndRole", params);
-        },
-        fetchPatientInfo(params) {
-            return axios.get("/api/getPatientInfo?", params);
-        },
-        fetchLocationHierarchy(params) {
-            return axios.get("/api/getLocationHierarchy", params);
-        },
-        savePatientProviderRelationship(params) {
-            return axios.post("/api/savePatientProviderRelationship?", params);
-        },
-        fetchOpenMedicalRequests() {
-            return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457", {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
-                }
-            });
-        },
+        // fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
+        //     return axios.get("/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
+        //         commit("setPatientForSearch", result.data));
+        // },
+        // fetchLocationsAndRolesForUser(params) {
+        //     return axios.get("api/getLocationAndRole", params);
+        // },
+        // fetchPatientInfo(params) {
+        //     return axios.get("/api/getPatientInfo?", params);
+        // },
+        // fetchLocationHierarchy(params) {
+        //     return axios.get("/api/getLocationHierarchy", params);
+        // },
+        // savePatientProviderRelationship(params) {
+        //     return axios.post("/api/savePatientProviderRelationship?", params);
+        // },
+        // fetchOpenMedicalRequests() {
+        //     return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457", {
+        //         headers: {
+        //             'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+        //         }
+        //     });
+        // },
         fetchDashboardSuppliesRequestStatus() {
             return axios.get("searchPatient?suppliesRequestStatus=Open&healthProId=1", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
             });
-        }
+        },
+        fetchDashboardMedicalRequestStatus() {
+            return axios.get("searchPatient?healthProId=25&medicalRequestStatus=Open", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
+        },
+        fetchDashboardComplianceStatus() {
+            return axios.get("searchPatient?healthProId=25&geofenceCompliant=false", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
+        },
     }
 });

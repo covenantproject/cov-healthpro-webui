@@ -42,6 +42,12 @@
                 sampleData
             }
         },
+        props: {
+            requestForMedicalCareResponseObjectArray: {
+                type: Array,
+                default: null
+            }
+        },
         methods: {
             onRowClicked: function(value) {
                 console.log("request medical table row clicked " + value);
@@ -49,7 +55,7 @@
         },
         computed: {
             getData: function() {
-                return this.sampleData.medicalRequest;
+                return this.requestForMedicalCareResponseObjectArray ? this.requestForMedicalCareResponseObjectArray : sampleData.foodRequest;
             }
         }
     }

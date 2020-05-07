@@ -43,7 +43,7 @@
             }
         },
         props: {
-            suppliesRequestStatusObjectArray: {
+            suppliesRequestStatusResponseObjectArray: {
                 type: Array,
                 default: null
             }
@@ -55,7 +55,7 @@
         },
         computed: {
             getData: function() {
-                return this.suppliesRequestStatusObjectArray ? this.suppliesRequestStatusObjectArray : sampleData.foodRequest;
+                return this.suppliesRequestStatusResponseObjectArray ? this.suppliesRequestStatusResponseObjectArray : sampleData.foodRequest;
             }
         }
     }

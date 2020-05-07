@@ -44,6 +44,12 @@
                 sampleData
             }
         },
+        props: {
+            quarantineViolationResponseObjectArray: {
+                type: Array,
+                default: null
+            }
+        },
         methods: {
             onRowClicked: function(value) {
                 console.log("quarantine violation table row clicked " + value);
@@ -51,7 +57,7 @@
         },
         computed: {
             getData: function() {
-                return this.sampleData.quarantineViolations;
+                return this.quarantineViolationResponseObjectArray ? this.quarantineViolationResponseObjectArray : sampleData.foodRequest;
             }
         }
     }
