@@ -20,7 +20,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-for="item in getData" @click="onRowClicked" :key="item.index">
+                <tr v-for="(item, index)  in getData" @click="onRowClicked($event, index)" :key="item.index">
                     <td>{{item.firstName}}</td>
                     <td>{{item.lastName}}</td>
                     <td>{{item.reported}}</td>
@@ -49,12 +49,15 @@
             }
         },
         methods: {
-            onRowClicked: function(value) {
-                console.log("Food water table row clicked " + value);
+            onRowClicked: function(event, index) {
+                const patientID  = this.suppliesRequestStatusResponseObjectArray[index].patientID;
+                this.$router.push({ name: 'userInfo', params: { patientID: ""+patientID }})
             }
         },
         computed: {
             getData: function() {
+                console.log("suppliesArray");
+                console.log(this.suppliesRequestStatusResponseObjectArray);
                 return this.suppliesRequestStatusResponseObjectArray ? this.suppliesRequestStatusResponseObjectArray : sampleData.foodRequest;
             }
         }

@@ -1,7 +1,5 @@
 <template>
-    <box>
         <user-info-component></user-info-component>
-    </box>
 </template>
 
 <script>
@@ -11,5 +9,4 @@
         name: "UserInfo",
         components: {UserInfoComponent}
     }
-
 </script>

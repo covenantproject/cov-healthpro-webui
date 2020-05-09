@@ -38,9 +38,6 @@ export default new Vuex.Store({
         // fetchLocationsAndRolesForUser(params) {
         //     return axios.get("api/getLocationAndRole", params);
         // },
-        // fetchPatientInfo(params) {
-        //     return axios.get("/api/getPatientInfo?", params);
-        // },
         // fetchLocationHierarchy(params) {
         //     return axios.get("/api/getLocationHierarchy", params);
         // },
@@ -54,22 +51,31 @@ export default new Vuex.Store({
         //         }
         //     });
         // },
-        fetchDashboardSuppliesRequestStatus() {
+        fetchDashboardSupplies() {
             return axios.get("searchPatient?suppliesRequestStatus=Open&healthProId=1", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
             });
         },
-        fetchDashboardMedicalRequestStatus() {
+        fetchDashboardMedical() {
             return axios.get("searchPatient?healthProId=25&medicalRequestStatus=Open", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
             });
         },
-        fetchDashboardComplianceStatus() {
+        fetchDashboardCompliance() {
             return axios.get("searchPatient?healthProId=25&geofenceCompliant=false", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
+        },
+        fetchPatientInfo({commit}, params) {
+            console.log("fetch patient called");
+            console.log("with params " + params.patientID);
+            return axios.get("/api/getPatientInfo?patientId=" + params.patientID, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }

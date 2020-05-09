@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="getShowProgressBarCount === 0">
         <div class="box">
             <p id="title-first-lastname">{{getFirstName()}} {{getLastName()}}</p>
             <input id="message-text-box" class="input" type="text" :value=getMessage() readonly>
@@ -67,11 +67,20 @@
             }
         },
         created() {
-            this.$store.dispatch("fetchPatientInfo", {
-                patientId:2
-            }).then(result => console.log(result));
+            this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount + 1);
+            console.log(this.$route.params.patientID);
+            this.fetchPatientInfo();
+
         },
         methods: {
+            fetchPatientInfo() {
+                this.$store.dispatch("fetchPatientInfo", {
+                    patientID: this.$route.params.patientID
+                }).then(result => {
+                    this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
+                    console.log(result);
+                });
+            },
             getFirstName() {
                 return sampleData.userProfile.firstName;
             },
@@ -113,6 +122,11 @@
             },
             getContactInfo() {
                 return sampleData.userProfile.contactInfo;
+            }
+        },
+        computed: {
+            getShowProgressBarCount() {
+                return this.$store.getters.getShowProgressBarCount;
             }
         }
     }

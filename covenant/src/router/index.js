@@ -36,9 +36,9 @@ const routes = new Router({
             component: SearchResults
         },
         {
-            path: "/userInfo",
+            path: "/userInfo/:patientID",
             name: "userInfo",
-            component: UserInfo
+            component: UserInfo,
         },
         {
             path: "/search",

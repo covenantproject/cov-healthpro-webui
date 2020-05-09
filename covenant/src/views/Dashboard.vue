@@ -37,19 +37,11 @@
             this.$store.commit("setShowProgressBarCount", 3);
         },
         methods: {
-            fetchOpenMedicalRequests: function() {
-                console.log("fire");
-                console.log("request");
-                this.$store.dispatch("fetchOpenMedicalRequests", {
-                    phoneNumber: 9791713457,
-                    healthProId: 1
-                }).then(result => console.log(result));
-            },
             fetchDashboardData: function() {
                 console.log("fetch");
                 console.log("supplies");
 
-                this.$store.dispatch("fetchDashboardComplianceStatus", {
+                this.$store.dispatch("fetchDashboardCompliance", {
                     suppliesRequestStatus: "Open",
                     healthProId: 1
                 }).then(result => {
@@ -58,7 +50,7 @@
                     console.log(result.data.patients);
                 });
 
-                this.$store.dispatch("fetchDashboardMedicalRequestStatus", {
+                this.$store.dispatch("fetchDashboardMedical", {
                     suppliesRequestStatus: "Open",
                     healthProId: 1
                 }).then(result => {
@@ -67,8 +59,7 @@
                     console.log(result.data.patients);
                 });
 
-                // this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount());
-                this.$store.dispatch("fetchDashboardSuppliesRequestStatus", {
+                this.$store.dispatch("fetchDashboardSupplies", {
                     suppliesRequestStatus: "Open",
                     healthProId: 1
                 }).then(result => {
@@ -76,7 +67,7 @@
                     this.suppliesRequestStatusResponseObjectArray = result.data.patients;
                     console.log(result.data.patients);
                 });
-            },
+            }
         },
         computed: {
             getShowProgressBarCount() {
@@ -85,7 +76,6 @@
         }
     }
 </script>
-
 <style>
     tr {
         cursor: pointer;
