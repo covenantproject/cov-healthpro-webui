@@ -47,7 +47,7 @@
                 </div>
             </div>
         </nav>
-        <progress class="progress is-small is-info" max="100">15%</progress>
+        <progress v-if="getShowProgressBarCount > 0" class="progress is-small is-info" max="100">15%</progress>
         <div class="container" id="main">
             <router-view/>
         </div>
@@ -62,11 +62,13 @@
             }
         },
         methods: {
-            // hideSearchBoxOnUrls() {
-            //     return this.$route.path !== "/login" && this.$route.path !== "/sendMessage" && this.$route.path !== "/registration" && this.$route.path !== "/";
-            // },
             hideNavItemsOnUrls() {
                 return this.$route.path !== "/login" && this.$route.path !== "/sendMessage";
+            }
+        },
+        computed: {
+            getShowProgressBarCount() {
+                return this.$store.getters.getShowProgressBarCount;
             }
         }
     }
