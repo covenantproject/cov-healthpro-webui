@@ -52,21 +52,21 @@ export default new Vuex.Store({
         //     });
         // },
         fetchDashboardSupplies() {
-            return axios.get("searchPatient?suppliesRequestStatus=Open&healthProId=1", {
+            return axios.get("covid_service/web/api/searchPatient?suppliesRequestStatus=Open&healthProId=1", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
             });
         },
         fetchDashboardMedical() {
-            return axios.get("searchPatient?healthProId=25&medicalRequestStatus=Open", {
+            return axios.get("covid_service/web/api/searchPatient?healthProId=25&medicalRequestStatus=Open", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
             });
         },
         fetchDashboardCompliance() {
-            return axios.get("searchPatient?healthProId=25&geofenceCompliant=false", {
+            return axios.get("covid_service/web/api/searchPatient?healthProId=25&geofenceCompliant=false", {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
@@ -76,7 +76,7 @@ export default new Vuex.Store({
             console.log(commit);
             console.log("fetch patient called");
             console.log("with params " + params.patientID);
-            return axios.get("getPatientInfo?patientId=" + params.patientID, {
+            return axios.get("covid_service/web/api/getPatientInfo?patientId=" + params.patientID, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
