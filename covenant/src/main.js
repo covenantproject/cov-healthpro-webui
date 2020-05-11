@@ -22,7 +22,7 @@ Vue.use(VueGoogleMaps, {
 //CovenantProd , 26b5e262-27e9-491a-a9df-efea174ee54c
 //COV-Client-4200, 1720fbbd-c9a2-4677-9658-232755a1b397
 let initOptions = {
-  url: 'http://3.7.102.213:9763/auth', realm: 'master', clientId: 'CovenantProd', onLoad: 'login-required', "credentials": {
+  url: 'https://aws1.covn.in:9443/auth/', realm: 'master', clientId: 'CovenantProd', onLoad: 'login-required', "credentials": {
     "secret": "26b5e262-27e9-491a-a9df-efea174ee54c"
   }  
 };
