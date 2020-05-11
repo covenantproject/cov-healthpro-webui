@@ -10,7 +10,6 @@ import Search from '../views/Search';
 Vue.use(Router);
 
 const routes = new Router({
-//mode: "history", //TODO: removes the hash as the first element of the url - remove this line for production
     base: window.location.pathname,
 
     routes: [

@@ -21,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" @click="onRowClicked($event, index)" :key="item.index">
+            <tr v-for="item in getData" @click="onRowClicked(item.patientID)" :key="item.index">
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.lastReported}}</td>
@@ -51,10 +51,9 @@
             }
         },
         methods: {
-            onRowClicked: function(event, index) {
-                console.log("request quarantine violation table row clicked " + value);
-                const patientID = this.suppliesRequestStatusResponseObjectArray[index].patientID;
-                this.$router.push({name: 'userInfo', params: {patientID: "" + patientID}})
+            onRowClicked: function(patientID) {
+                console.log("request quarantine violation table row clicked ", patientID);
+                this.$router.push({name: 'userInfo', params: {patientID: patientID}})
             }
         },
         computed: {

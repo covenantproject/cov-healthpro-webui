@@ -73,9 +73,10 @@ export default new Vuex.Store({
             });
         },
         fetchPatientInfo({commit}, params) {
+            console.log(commit);
             console.log("fetch patient called");
             console.log("with params " + params.patientID);
-            return axios.get("/api/getPatientInfo?patientId=" + params.patientID, {
+            return axios.get("getPatientInfo?patientId=" + params.patientID, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
                 }
