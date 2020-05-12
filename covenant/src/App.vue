@@ -38,7 +38,7 @@
                         <a class="navbar-item" v-if='hideNavItemsOnUrls()'><strong>Username</strong></a>
                         <div class="navbar-item" v-if='hideNavItemsOnUrls()'>
                             <div class="buttons">
-                                <a class="button is-light">
+                                <a class="button is-light" v-on:click="signOut">
                                     <strong>Sign Out</strong>
                                 </a>
                             </div>
@@ -56,6 +56,9 @@
 <script>
     export default {
         name: 'app',
+        props: {
+            keycloak: Object
+        },
         data() {
             return {
                 searchIsLoading: false,
@@ -64,6 +67,10 @@
         methods: {
             hideNavItemsOnUrls() {
                 return this.$route.path !== "/login" && this.$route.path !== "/sendMessage";
+            },
+            signOut() {
+                console.log("log out?");
+                this.keycloak.logout();
             }
         },
         computed: {

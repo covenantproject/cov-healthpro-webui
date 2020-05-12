@@ -38,14 +38,29 @@ keycloak.init({ onLoad: initOptions.onLoad, "checkLoginIframe": false }).success
   new Vue({
     store,
     router,
-    render: h => h(App),
+    render: h => h(App, {props: {keycloak: keycloak}}),
   }).$mount('#app');
 
   localStorage.setItem("kc-token", keycloak.token);
   localStorage.setItem("kc-refresh-token", keycloak.refreshToken);
 
-}).error(() => {
+  setInterval(() =>{
+    keycloak.updateToken(70).success((refreshed)=>{
+      if (refreshed) {
+        console.log.debug('Token refreshed'+ refreshed);
+      } else {
+        console.log('Token not refreshed, valid for '
+            + Math.round(keycloak.tokenParsed.exp + keycloak.timeSkew - new Date().getTime() / 1000) + ' seconds');
+      }
+    }).error(()=>{
+      console.log('Failed to refresh token');
+    });
 
+
+  }, 60000)
+
+}).error(() => {
+  console.log.error("Authenticated Failed");
 });
 
 axios.interceptors.request.use((request) => {
