@@ -1,9 +1,7 @@
 # cov-healthpro-webui
 Covenant Web UI for health professionals
 
-This is the web interface/dashboard for health professionals for Covenant.
-
-Note that translations of mobile application user interface into multiple languages are in the cov-translate repo.
+This repo contains the source code of the web interface/dashboard for health professionals for Covenant.
 
 Website: https://covn.org
 
