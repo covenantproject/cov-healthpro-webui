@@ -3,7 +3,7 @@ Covenant Web UI for health professionals
 
 This is the web interface/dashboard for health professionals for Covenant.
 
-Note that ranslations of mobile application user interface into multiple languages are in the cov-translate repo.
+Note that translations of mobile application user interface into multiple languages are in the cov-translate repo.
 
 Website: https://covn.org
 
