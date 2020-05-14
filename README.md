@@ -6,6 +6,7 @@ This is the web interface/dashboard for health professionals for Covenant.
 Website: https://covn.org
 
 (c) 2020 Covenant Team
+
 Released as open source under the Apache License v2.
 
 # Contributor Agreement
