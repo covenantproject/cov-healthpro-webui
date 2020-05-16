@@ -7,11 +7,11 @@ const baseUrl = 'https://aws1.covn.in/covid_service/web/api/';
 export default class ApiService {
 
   async defineHeaderAxios () {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("kc-token")
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("kc-token");
   }  
 
   sendSms(phoneNumbers, message){
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("kc-token")
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("kc-token");
     let url="sendSms?mobileNos="+phoneNumbers+"&message="+message;
     return axios
     .post(baseUrl + url)

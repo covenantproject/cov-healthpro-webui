@@ -1,15 +1,15 @@
 import Router from "vue-router";
 import Vue from "vue";
 import Dashboard from "../views/Dashboard";
-import Login from "../views/Login";
+import Registration from "../views/Registration";
 import SearchResults from "../views/SearchResults";
 import UserInfo from "../views/UserInfo";
-import SendMessage from '../views/SendMessage'
+import SendMessage from '../views/SendMessage';
+import Search from '../views/Search';
 
 Vue.use(Router);
 
 const routes = new Router({
-//mode: "history", //TODO: removes the hash as the first element of the url - remove this line for production
     base: window.location.pathname,
 
     routes: [
@@ -20,9 +20,9 @@ const routes = new Router({
             component: Dashboard
         },
         {
-            path: "/login",
-            name: "login",
-            component: Login
+            path: "/registration",
+            name: "registration",
+            component: Registration
         },
         {
             path: "/sendMessage",
@@ -35,10 +35,16 @@ const routes = new Router({
             component: SearchResults
         },
         {
-            path: "/userInfo",
+            path: "/userInfo/:patientID",
             name: "userInfo",
-            component: UserInfo
-        }
+            component: UserInfo,
+        },
+        {
+            path: "/search",
+            name: "search",
+            component: Search
+        },
+
     ]
 });
 

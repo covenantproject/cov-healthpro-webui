@@ -1,25 +1,14 @@
 <template>
     <div>
-        <dashboard-quarantine-violation
-                v-bind:firstName= "quarantineViolation.firstName"
-                v-bind:lastName= "quarantineViolation.lastName"
-                v-bind:lastReported ="quarantineViolation.lastReported"
-                v-bind:duration ="quarantineViolation.duration"
-                v-bind:distance ="quarantineViolation.distance"
+<!--        <button @click="fetchDashboardData()" class="button is-normal">Temporary Test Button</button>-->
+        <dashboard-quarantine-violation v-if="getShowProgressBarCount === 0"
+                v-bind:quarantine-violation-response-object-array="quarantineViolationResponseObjectArray"
         />
-
-        <dashboard-request-for-medical-care
-                v-bind:firstName ="requestForMedicalCare.firstName"
-                v-bind:lastName ="requestForMedicalCare.lastName"
-                v-bind:reported ="requestForMedicalCare.lastReported"
-                v-bind:message ="requestForMedicalCare.duration"
-                v-bind:distance ="requestForMedicalCare.distance"
+        <dashboard-request-for-medical-care v-if="getShowProgressBarCount === 0"
+                v-bind:request-for-medical-care-response-object-array="requestForMedicalCareResponseObjectArray"
         />
-        <dashboard-food-water
-                v-bind:firstName ="foodWater.firstName"
-                v-bind:lastName ="foodWater.lastName"
-                v-bind:reported ="foodWater.lastReported"
-                v-bind:message ="foodWater.duration"
+        <dashboard-supplies-request v-if="getShowProgressBarCount === 0"
+                v-bind:supplies-request-status-response-object-array="suppliesRequestStatusResponseObjectArray"
         />
     </div>
 </template>
@@ -27,46 +16,68 @@
 <script>
     import DashboardQuarantineViolation from "../components/dashboardComponents/dashboardQuarantineViolation";
     import DashboardRequestForMedicalCare from "../components/dashboardComponents/dashboardRequestMedical";
-    import DashboardFoodWater from "../components/dashboardComponents/dashboardFoodWater";
+    import DashboardSuppliesRequest from "../components/dashboardComponents/dashboardSuppliesRequest";
 
     export default {
         name: "Dashboard",
         components: {
-            DashboardFoodWater,
+            DashboardSuppliesRequest,
             DashboardRequestForMedicalCare,
             DashboardQuarantineViolation
         },
         data: () => {
             return {
-                quarantineViolation: {
-                    firstName: "",
-                    lastName: "",
-                    lastReported: Number,
-                    duration: Number,
-                    distance: Number
-                },
-                requestForMedicalCare: {
-                    firstName: "",
-                    lastName: "",
-                    reported: Number,
-                    message: "",
-                    distance: Number
-                },
-                foodWater: {
-                    firstName: "",
-                    lastName: "",
-                    reported: Number,
-                    message: "",
-                    distance: Number
-                }
+                quarantineViolationResponseObjectArray: null,
+                requestForMedicalCareResponseObjectArray: null,
+                suppliesRequestStatusResponseObjectArray: null,
             }
         },
         created() {
-            this.$store.dispatch("fetchOpenMedicalRequests", {
-                locationId: 338,
-                healthProId: 1,
-                quarantineRequestStatus: "Open"
-            }).then(result => console.log(result));
+            this.fetchDashboardData();
+            this.$store.commit("setShowProgressBarCount", 3);
+        },
+        methods: {
+            fetchDashboardData: function() {
+                console.log("fetch");
+                console.log("supplies");
+
+                this.$store.dispatch("fetchDashboardCompliance", {
+                    suppliesRequestStatus: "Open",
+                    healthProId: 1
+                }).then(result => {
+                    this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
+                    this.quarantineViolationResponseObjectArray = result.data.patients;
+                    console.log(result.data.patients);
+                });
+
+                this.$store.dispatch("fetchDashboardMedical", {
+                    suppliesRequestStatus: "Open",
+                    healthProId: 1
+                }).then(result => {
+                    this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
+                    this.requestForMedicalCareResponseObjectArray = result.data.patients;
+                    console.log(result.data.patients);
+                });
+
+                this.$store.dispatch("fetchDashboardSupplies", {
+                    suppliesRequestStatus: "Open",
+                    healthProId: 1
+                }).then(result => {
+                    this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
+                    this.suppliesRequestStatusResponseObjectArray = result.data.patients;
+                    console.log(result.data.patients);
+                });
+            }
+        },
+        computed: {
+            getShowProgressBarCount() {
+                return this.$store.getters.getShowProgressBarCount;
+            }
         }
     }
 </script>
+<style>
+    tr {
+        cursor: pointer;
+    }
+</style>

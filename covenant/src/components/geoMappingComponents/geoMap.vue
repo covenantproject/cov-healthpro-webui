@@ -44,15 +44,7 @@
                     this.markers.push({ position: { lat: this.latitude, lng: this.longitude } });
                     this.places.push({ lat: this.latitude, lng: this.longitude });
                     this.center = { lat: this.latitude, lng: this.longitude };
-            },
-            // geolocate: function() {
-            //     navigator.geolocation.getCurrentPosition(position => {
-            //         this.center = {
-            //             lat: position.coords.latitude,
-            //             lng: position.coords.longitude
-            //         };
-            //     });
-            // }
+            }
         }
     };
 </script>
