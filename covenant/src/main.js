@@ -4,6 +4,7 @@ import router from './router/index.js';
 import './../node_modules/bulma/css/bulma.css';
 import store from './data/index.js';
 import Vuex from 'vuex';
+
 import * as Keycloak from 'keycloak-js'
 import * as VueGoogleMaps from "vue2-google-maps";
 import axios from "axios";
