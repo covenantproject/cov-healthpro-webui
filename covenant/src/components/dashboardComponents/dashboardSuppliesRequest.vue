@@ -4,7 +4,7 @@
             <div class="hero-body">
                 <div class="container">
                     <h2 class="subtitle">
-                        <strong>Requests for Medical Care</strong>
+                        <strong>Requests for Food and Water</strong>
                     </h2>
                 </div>
             </div>
@@ -20,12 +20,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" @click="onRowClicked(item.patientID)" :key="item.index">
-                <td>{{item.firstName}}</td>
-                <td>{{item.lastName}}</td>
-                <td>{{item.reported}}</td>
-                <td>{{item.message}}</td>
-            </tr>
+                <tr v-for="(item, index)  in getData" @click="onRowClicked($event, index)" :key="item.index">
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.reported}}</td>
+                    <td>{{item.message}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -35,7 +35,7 @@
     import sampleData from "../../data/data";
 
     export default {
-        name: "dashboardRequestForMedicalCare",
+        name: "dashboardFoodWater",
 
         data: () => {
             return {
@@ -43,19 +43,22 @@
             }
         },
         props: {
-            requestForMedicalCareResponseObjectArray: {
+            suppliesRequestStatusResponseObjectArray: {
                 type: Array,
                 default: null
             }
         },
         methods: {
-            onRowClicked: function(patientID) {
-                this.$router.push({name: 'userInfo', params: {patientID: "" + patientID}})
+            onRowClicked: function(event, index) {
+                const patientID  = this.suppliesRequestStatusResponseObjectArray[index].patientID;
+                this.$router.push({ name: 'userInfo', params: { patientID: ""+patientID }})
             }
         },
         computed: {
             getData: function() {
-                return this.requestForMedicalCareResponseObjectArray ? this.requestForMedicalCareResponseObjectArray : sampleData.foodRequest;
+                console.log("suppliesArray");
+                console.log(this.suppliesRequestStatusResponseObjectArray);
+                return this.suppliesRequestStatusResponseObjectArray ? this.suppliesRequestStatusResponseObjectArray : sampleData.foodRequest;
             }
         }
     }

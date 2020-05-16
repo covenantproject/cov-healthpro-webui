@@ -1,49 +1,53 @@
 <template>
-    <div>
+    <div v-if="getShowProgressBarCount === 0">
         <div class="box">
-            <p id="title-first-lastname">{{getFirstName()}} {{getLastName()}}</p>
+            <p id="title-first-lastname">{{patient.firstName}} {{patient.lastName}}</p>
             <input id="message-text-box" class="input" type="text" :value=getMessage() readonly>
             <div class="columns">
                 <div class="column">
-                    <p class="info-title">Patient Type</p>
-                    <p>{{getPatientType()}}</p>
+                    <p class="info-title">Quarantine Status</p>
+                    <p>{{patient.quarantineStatus}}</p>
                 </div>
                 <div class="column">
                     <p class="info-title">Quarantine Dates</p>
-                    <p>1 April - 15 April</p>
+                    <p>{{patient.quarantineStartDate}} - {{patient.quarantineStartDate}}</p>
                 </div>
                 <div class="column">
                     <p class="info-title">COVID-19 Status</p>
-                    <p>{{getCovidStatus()}}</p>
+                    <p>{{patient.covid19Status}}</p>
                 </div>
             </div>
             <div class="columns">
                 <div class="column is-one-third">
                     <div>
-                        <p class="info-title">Quarantine Status</p>
-                        <p>{{getQuarantineStatus()}}</p>
+                        <p class="info-title">Geofence Status</p>
+                        <p>{{patient.geofenceStatus}}</p>
                     </div>
                     <div>
                         <p class="info-title">Demographics</p>
-                        <p>{{getSex()}} {{getAge()}} ({{getBirthdayDDMMYYYY()}})</p>
+                        <p>{{patient.sex}} {{getAge()}} ({{getBirthdayDDMMYYYY()}})</p>
                     </div>
                     <div>
                         <p class="info-title">Contact Info</p>
-                        <p>{{getContactInfo()}}</p>
+                        <p>{{patient.phoneNumber1}}</p>
                     </div>
                     <div>
-                        <p class="info-title">Quarantine Latitude</p>
-                        <p>{{getQuarantineLatitude()}}</p>
+                        <p class="info-title">Quarantine Address</p>
+                        <p>{{patient.quarantineAddress}}</p>
                     </div>
                     <div>
-                        <p class="info-title">Quarantine Longitude</p>
-                        <p>{{getQuarantineLongitude()}}</p>
+                        <p class="info-title">Patient Latitude</p>
+                        <p>{{patient.latitude}}</p>
+                    </div>
+                    <div>
+                        <p class="info-title">Patient Longitude</p>
+                        <p>{{patient.longitude}}</p>
                     </div>
                 </div>
                 <div class="column is-two-thirds">
                     <geo-map id="geo-map"
-                        v-bind:latitude="getQuarantineLatitude()"
-                        v-bind:longitude="getQuarantineLongitude()"
+                        v-bind:latitude="patient.latitude"
+                        v-bind:longitude="patient.longitude"
                     ></geo-map>
                 </div>
             </div>
@@ -53,20 +57,35 @@
 
 <script>
     import sampleData from "../../data/data";
-    import geoMap from "../geoMappingComponent/geoMap";
+    import geoMap from "../geoMappingComponents/geoMap";
 
     export default {
         name: "userInfoComponent",
-
         components: {
             geoMap
         },
         data: () => {
             return {
-                sampleData
+                sampleData,
+                patient: {}
             }
         },
+        created() {
+            this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount + 1);
+            console.log(this.$route.params.patientID);
+            this.fetchPatientInfo();
+
+        },
         methods: {
+            fetchPatientInfo() {
+                this.$store.dispatch("fetchPatientInfo", {
+                    patientID: this.$route.params.patientID
+                }).then(result => {
+                    this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
+                    console.log(result);
+                    this.patient = result.data;
+                });
+            },
             getFirstName() {
                 return sampleData.userProfile.firstName;
             },
@@ -108,6 +127,11 @@
             },
             getContactInfo() {
                 return sampleData.userProfile.contactInfo;
+            }
+        },
+        computed: {
+            getShowProgressBarCount() {
+                return this.$store.getters.getShowProgressBarCount;
             }
         }
     }

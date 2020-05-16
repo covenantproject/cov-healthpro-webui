@@ -1,7 +1,16 @@
 <template>
     <div class="box">
-        <p><strong>People currently Non-Compliant</strong></p>
-        <table class="table is-fullwidth">
+        <section class="hero is-light">
+            <div class="hero-body">
+                <div class="container">
+                    <h2 class="subtitle">
+                        <strong>Individuals currently Non-Compliant</strong>
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <table class="table is-fullwidth is-hoverable">
             <thead>
             <tr>
                 <th>First Name</th>
@@ -12,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" :key="item.index">
+            <tr v-for="item in getData" @click="onRowClicked(item.patientID)" :key="item.index">
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.lastReported}}</td>
@@ -35,13 +44,22 @@
                 sampleData
             }
         },
+        props: {
+            quarantineViolationResponseObjectArray: {
+                type: Array,
+                default: null
+            }
+        },
+        methods: {
+            onRowClicked: function(patientID) {
+                console.log("request quarantine violation table row clicked ", patientID);
+                this.$router.push({name: 'userInfo', params: {patientID: patientID}})
+            }
+        },
         computed: {
             getData: function() {
-                return this.sampleData.quarantineViolations;
+                return this.quarantineViolationResponseObjectArray ? this.quarantineViolationResponseObjectArray : sampleData.foodRequest;
             }
         }
     }
 </script>
-
-<style scoped>
-</style>

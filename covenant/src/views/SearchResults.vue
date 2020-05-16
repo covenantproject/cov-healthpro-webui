@@ -5,7 +5,7 @@
 </template>
 
 <script>
-    import SearchResult from "../components/searchResultComponent/searchResult";
+    import SearchResult from "../components/searchResultComponents/searchResult";
 
     export default {
         name: "SearchResults",

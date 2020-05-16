@@ -4,7 +4,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/': {
-                target: 'http://blockchain.eastus.cloudapp.azure.com:8080/covid_service',
+                target: 'https://aws1.covn.in/',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: {

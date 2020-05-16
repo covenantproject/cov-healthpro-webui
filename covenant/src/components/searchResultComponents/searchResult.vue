@@ -36,7 +36,6 @@
         data: () => {
             return {
                 sampleData,
-                loadingData: false,
                 searchPatient: {}
             }
         },

@@ -7,12 +7,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         count: 0,
+        showProgressBarCount: 0, // if count > 0 show indeterminate progress bar
         searchPatient: {}
 
     },
     getters: {
         getCounter (state) {
             return state.count;
+        },
+        getShowProgressBarCount (state) {
+            return state.showProgressBarCount;
         }
     },
     mutations: {
@@ -21,27 +25,62 @@ export default new Vuex.Store({
         },
         setSearchPatient(state, data) {
             this.state.searchPatient = data;
+        },
+        setShowProgressBarCount(state, data) {
+            this.state.showProgressBarCount = data;
         }
     },
     actions: {
         // fetchPatientBasedPhoneNumber: function({commit}, phoneNumber) {
-        //     return axios.get(API_URL + "/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
+        //     return axios.get("/api/searchPatient?/phoneNumber={}", phoneNumber).then(result =>
         //         commit("setPatientForSearch", result.data));
         // },
-        fetchLocationsAndRolesForUser(params) {
-            return axios.get("api/getLocationAndRole", {params});
+        // fetchLocationsAndRolesForUser(params) {
+        //     return axios.get("api/getLocationAndRole", params);
+        // },
+        // fetchLocationHierarchy(params) {
+        //     return axios.get("/api/getLocationHierarchy", params);
+        // },
+        // savePatientProviderRelationship(params) {
+        //     return axios.post("/api/savePatientProviderRelationship?", params);
+        // },
+        // fetchOpenMedicalRequests() {
+        //     return axios.get("/api/searchPatient?healthProId=1&phoneNumber=9791713457", {
+        //         headers: {
+        //             'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+        //         }
+        //     });
+        // },
+        fetchDashboardSupplies() {
+            return axios.get("covid_service/web/api/searchPatient?suppliesRequestStatus=Open&healthProId=1", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
         },
-        fetchOpenMedicalRequests(params) {
-                return axios.get("/api/searchPatient?", {params});
+        fetchDashboardMedical() {
+            return axios.get("covid_service/web/api/searchPatient?healthProId=25&medicalRequestStatus=Open", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
         },
-        fetchPatientInfo(params) {
-            return axios.get("/api/getPatientInfo?", {params})
+        fetchDashboardCompliance() {
+            return axios.get("covid_service/web/api/searchPatient?healthProId=25&geofenceCompliant=false", {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
         },
-        fetchLocationHierarchy(params) {
-            return axios.get("/api/getLocationHierarchy", {params})
+        fetchPatientInfo({commit}, params) {
+            console.log(commit);
+            console.log("fetch patient called");
+            console.log("with params " + params.patientID);
+            return axios.get("covid_service/web/api/getPatientInfo?patientId=" + params.patientID, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            });
         },
-        savePatientProviderRelationship(params) {
-            return axios.post("/api/savePatientProviderRelationship?", {params})
-        }
     }
 });
