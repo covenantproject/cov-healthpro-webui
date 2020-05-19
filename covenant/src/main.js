@@ -56,8 +56,6 @@ keycloak.init({ onLoad: initOptions.onLoad, "checkLoginIframe": false }).success
     }).error(()=>{
       console.log('Failed to refresh token');
     });
-
-
   }, 60000)
 
 }).error(() => {

@@ -82,5 +82,18 @@ export default new Vuex.Store({
                 }
             });
         },
+        fetchSearchResults(state, {firstName, lastName, phoneNumber}) {
+            return axios.get("covid_service/web/api/searchPatient", {
+                params: {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phoneNumber,
+                    healthProId: 25
+                },
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("kc-token")}`
+                }
+            })
+        }
     }
 });
