@@ -19,20 +19,31 @@
             </div>
         </div>
         <div class="columns is-mobile">
-            <table class="table">
-                <tbody>
-                <tr v-for="patient in searchResults" :key="patient.patientID">
-                    <td>{{patient.patientID}}</td>
-                    <td>{{patient.firstName}}</td>
-                    <td>{{patient.lastName}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="column">
+                <table class="table is-fullwidth is-hoverable" v-if="showResults">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="patient in searchResults" :key="patient.patientID" @click="onRowClicked(patient.patientID)">
+                        <td>{{patient.patientID}}</td>
+                        <td>{{patient.firstName}}</td>
+                        <td>{{patient.lastName}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    // import searchResult from "../searchResultComponents/searchResult";
+
     export default {
         name: "SearchBarComponent",
         data() {
@@ -44,6 +55,11 @@
                 searchResults: []
             }
         },
+        computed: {
+            showResults: function() {
+                return Array.isArray(this.searchResults) && this.searchResults.length;
+            }
+        },
         methods: {
             onSearchButtonClicked(){
                 this.toggleLoad();
@@ -52,7 +68,7 @@
                     lastName: this.lastName,
                     phoneNumber: this.phoneNumber
                 }).then(result => {
-                    this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
+                    // this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount - 1);
                     this.searchResults = result.data.patients;
                     console.log(result.data);
                     this.toggleLoad();
@@ -60,7 +76,11 @@
             },
             toggleLoad() {
                 this.searchIsLoading = !this.searchIsLoading;
+                // this.$store.commit("setShowProgressBarCount", this.$store.getters.getShowProgressBarCount + 1);
             },
+            onRowClicked: function(patientID) {
+                this.$router.push({name: 'userInfo', params: {patientID: "" + patientID}});
+            }
         }
     }
 </script>
