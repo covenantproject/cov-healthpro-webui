@@ -5,7 +5,7 @@ module.exports = {
         proxy: {
             '/': {
                 target: 'https://aws1.covn.in/',
-                secure: false,
+                secure: true,
                 changeOrigin: true,
                 pathRewrite: {
                     '^/': '/'
