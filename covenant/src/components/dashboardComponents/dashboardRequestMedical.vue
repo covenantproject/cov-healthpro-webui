@@ -1,14 +1,15 @@
 <template>
     <div class="box">
-        <section class="hero is-light">
-            <div class="hero-body">
-                <div class="container">
-                    <h2 class="subtitle">
-                        <strong>Requests for Medical Care</strong>
-                    </h2>
-                </div>
-            </div>
-        </section>
+<!--        <section class="hero is-light">-->
+<!--            <div class="hero-body">-->
+<!--                <div class="container">-->
+<!--                    <h2 class="subtitle">-->
+<!--                        <strong>Requests for Medical Care</strong>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+        <h4 class="title is-4">Requests for Medical Care</h4>
 
         <table class="table is-fullwidth is-hoverable">
             <thead>
@@ -20,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" @click="onRowClicked(item.patientID)" :key="item.index">
+            <tr v-for="item in dataForDisplay" @click="onRowClicked(item.patientID)" :key="item.index">
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.reported}}</td>
@@ -28,6 +29,7 @@
             </tr>
             </tbody>
         </table>
+        <button @click="showExpanded = !showExpanded" class="button">{{toggleText}}</button>
     </div>
 </template>
 
@@ -39,7 +41,7 @@
 
         data: () => {
             return {
-                sampleData
+                showExpanded: false
             }
         },
         props: {
@@ -54,8 +56,22 @@
             }
         },
         computed: {
-            getData: function() {
-                return this.requestForMedicalCareResponseObjectArray ? this.requestForMedicalCareResponseObjectArray : sampleData.foodRequest;
+            dataForDisplay() {
+                if (this.requestForMedicalCareResponseObjectArray == null) {
+                    return null;
+                }
+                if (this.showExpanded) {
+                    return this.requestForMedicalCareResponseObjectArray;
+                } else {
+                    return this.requestForMedicalCareResponseObjectArray.slice(0,5);
+                }
+            },
+            toggleText() {
+                if (this.showExpanded){
+                    return "Hide Expanded View"
+                } else {
+                    return "Show All"
+                }
             }
         }
     }
