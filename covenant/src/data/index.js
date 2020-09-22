@@ -12,15 +12,15 @@ export default new Vuex.Store({
 
     },
     getters: {
-        getCounter (state) {
+        getCounter(state) {
             return state.count;
         },
-        getShowProgressBarCount (state) {
+        getShowProgressBarCount(state) {
             return state.showProgressBarCount;
         }
     },
     mutations: {
-        incrementCounter (state) {
+        incrementCounter(state) {
             state.counter += 1;
         },
         setSearchPatient(state, data) {
@@ -72,7 +72,7 @@ export default new Vuex.Store({
                 }
             });
         },
-        fetchPatientInfo({commit}, params) {
+        fetchPatientInfo({ commit }, params) {
             console.log(commit);
             console.log("fetch patient called");
             console.log("with params " + params.patientID);
@@ -82,7 +82,7 @@ export default new Vuex.Store({
                 }
             });
         },
-        fetchSearchResults(state, {firstName, lastName, phoneNumber}) {
+        fetchSearchResults(state, { firstName, lastName, phoneNumber }) {
             return axios.get("covid_service/web/api/searchPatient", {
                 params: {
                     firstName: firstName,

@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index.js';
-import './../node_modules/bulma/css/bulma.css';
+import 'bulma/css/bulma.css';
 import store from './data/index.js';
 import Vuex from 'vuex';
 
 import * as Keycloak from 'keycloak-js'
-import * as VueGoogleMaps from "vue2-google-maps";
+import * as VueGoogleMaps from 'vue2-google-maps';
 import axios from "axios";
 
 Vue.use(Vuex);
@@ -23,7 +23,7 @@ Vue.use(VueGoogleMaps, {
 //CovenantProd , 26b5e262-27e9-491a-a9df-efea174ee54c
 //COV-Client-4200, 1720fbbd-c9a2-4677-9658-232755a1b397
 let initOptions = {
-  url: 'https://aws1.covn.in:9443/auth/', realm: 'master', clientId: 'CovenantProd', onLoad: 'login-required', "credentials": {
+  url: 'https://aws1.covn.in:9443/auth/', realm: 'master', clientId: 'CovenantProd', "credentials": {
     "secret": "26b5e262-27e9-491a-a9df-efea174ee54c"
   }  
 };

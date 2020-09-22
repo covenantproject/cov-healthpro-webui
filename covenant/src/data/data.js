@@ -98,7 +98,7 @@ const data = {
             sex: "Male",
             age: "22yr",
             address: "1234 Address St, City, Province, Country"
-        },{
+        }, {
             patientID: 1,
             firstName: "test",
             lastName: "test",
