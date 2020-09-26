@@ -1,14 +1,15 @@
 <template>
     <div class="box">
-        <section class="hero is-light">
-            <div class="hero-body">
-                <div class="container">
-                    <h2 class="subtitle">
-                        <strong>Individuals currently Non-Compliant</strong>
-                    </h2>
-                </div>
-            </div>
-        </section>
+<!--        <section class="hero is-light">-->
+<!--            <div class="hero-body">-->
+<!--                <div class="container">-->
+<!--                    <h2 class="subtitle">-->
+<!--                        <strong>Individuals currently Non-Compliant</strong>-->
+<!--                    </h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+        <h4 class="title is-4">Individuals currently Non-Compliant</h4>
 
         <table class="table is-fullwidth is-hoverable">
             <thead>
@@ -21,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in getData" @click="onRowClicked(item.patientID)" :key="item.index">
+            <tr v-for="item in dataForDisplay" @click="onRowClicked(item.patientID)" :key="item.index">
                 <td>{{item.firstName}}</td>
                 <td>{{item.lastName}}</td>
                 <td>{{item.lastReported}}</td>
@@ -30,6 +31,7 @@
             </tr>
             </tbody>
         </table>
+        <button @click="showExpanded = !showExpanded" class="button">{{toggleText}}</button>
     </div>
 </template>
 
@@ -41,7 +43,7 @@
 
         data: () => {
             return {
-                sampleData
+                showExpanded: false,
             }
         },
         props: {
@@ -57,8 +59,22 @@
             }
         },
         computed: {
-            getData: function() {
-                return this.quarantineViolationResponseObjectArray ? this.quarantineViolationResponseObjectArray : sampleData.foodRequest;
+            dataForDisplay() {
+                if (this.quarantineViolationResponseObjectArray == null) {
+                    return null;
+                }
+                if (this.showExpanded) {
+                    return this.quarantineViolationResponseObjectArray;
+                } else {
+                    return this.quarantineViolationResponseObjectArray.slice(0,5);
+                }
+            },
+            toggleText() {
+                if (this.showExpanded){
+                    return "Hide Expanded View"
+                } else {
+                    return "Show All"
+                }
             }
         }
     }
